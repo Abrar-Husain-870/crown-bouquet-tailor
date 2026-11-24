@@ -1,0 +1,11 @@
+# Netlify Configuration for Crown Bouquet Ladies Tailor
+[build]
+  command = "node build.js"
+  publish = "."
+
+[build.environment]
+  NODE_VERSION = "20"
+
+[functions]
+  directory = "netlify/functions"
+

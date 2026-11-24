@@ -1,0 +1,768 @@
+/* ==========================================================================
+   CROWN BOUQUET LADIES TAILOR - DIGITAL VISITING CARD
+   Aesthetic: Boutique luxury inspired by Sukriti reference design
+   Target: Single, Clean Window Scrollbar (NO nested duplicate scrollbars)
+   ========================================================================== */
+
+/* ---------- CSS Reset & Custom Properties ---------- */
+:root {
+  /* Brand Color Palette */
+  --color-plum: #6A223D;
+  --color-plum-dark: #4F162B;
+  --color-plum-light: #8E3656;
+  --color-plum-soft: rgba(106, 34, 61, 0.08);
+  --color-gold: #C69255;
+  --color-gold-light: #DFC099;
+  --color-gold-soft: rgba(198, 146, 85, 0.14);
+  --color-cream-bg: #FAF6F3;
+  --color-cream-card: #FFFFFF;
+  --color-sage: #557A6C;
+  --color-sage-soft: rgba(85, 122, 108, 0.12);
+  --color-whatsapp: #25D366;
+  --color-whatsapp-dark: #128C7E;
+  --color-insta: #E1306C;
+  --color-text-main: #2C1E23;
+  --color-text-muted: #6E5C63;
+  --color-text-light: #8C7880;
+  --color-border: rgba(106, 34, 61, 0.12);
+  --color-border-gold: rgba(198, 146, 85, 0.32);
+
+  /* Typography */
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-script: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+
+  /* Shadows */
+  --shadow-sm: 0 2px 8px rgba(106, 34, 61, 0.06);
+  --shadow-md: 0 6px 20px rgba(106, 34, 61, 0.09);
+  --shadow-gold: 0 4px 14px rgba(198, 146, 85, 0.22);
+
+  /* Dynamic Viewport Height */
+  --app-height: 100dvh;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Document level hardware-accelerated momentum scrolling */
+html {
+  font-size: 16px;
+  background-color: var(--color-cream-bg);
+  min-height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch; /* Butter-smooth momentum scrolling on iOS */
+  scroll-behavior: smooth;
+  color-scheme: light;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-cream-bg);
+  color: var(--color-text-main);
+  min-height: 100%;
+  min-height: 100dvh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: visible; /* Lets the root HTML handle hardware GPU scroll smoothly */
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ---------- Screen Wrapper (No inner scrollbar, GPU composite layer) ---------- */
+.screen-wrapper {
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: visible;
+  transform: translateZ(0); /* Hardware acceleration */
+}
+
+/* ---------- Botanical Corner Decor (GPU cached layer) ---------- */
+.botanical-decor {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.5;
+  transform: translateZ(0);
+  will-change: transform;
+}
+.botanical-top-left {
+  top: -10px;
+  left: -15px;
+  width: 160px;
+  height: 160px;
+}
+.botanical-bottom-right {
+  bottom: -15px;
+  right: -15px;
+  width: 170px;
+  height: 170px;
+}
+
+/* ---------- Main Container ---------- */
+.card-container {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  padding: 16px 18px 14px;
+  gap: 12px;
+}
+
+/* ---------- Header: Brand & Identity ---------- */
+.header-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 5px;
+}
+
+.brand-pretitle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+}
+
+.brand-pretitle .flourish {
+  font-size: 0.95rem;
+  color: var(--color-gold);
+}
+
+/* Top bar with logo and utility share button */
+.brand-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+}
+
+.logo-wrapper {
+  width: 76px;
+  height: 76px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.header-utility-actions {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  gap: 8px;
+}
+
+.icon-circle-btn {
+  background: #FFFFFF;
+  border: 1px solid var(--color-border-gold);
+  color: var(--color-plum);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-sm);
+}
+
+.icon-circle-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.icon-circle-btn:active, .icon-circle-btn:hover {
+  background: var(--color-plum);
+  color: #FFFFFF;
+  border-color: var(--color-plum);
+  transform: scale(1.06);
+}
+
+/* Brand Name Typography */
+.brand-title-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.brand-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.65rem, 4.5vw, 2.25rem);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--color-plum-dark);
+  line-height: 1.15;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
+}
+
+.brand-subtitle {
+  font-size: clamp(0.85rem, 2vw, 1.02rem);
+  font-weight: 700;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-top: 2px;
+}
+
+/* Decorative Divider */
+.decorative-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 70%;
+  max-width: 300px;
+  margin: 2px auto;
+  opacity: 0.85;
+}
+
+.decorative-divider .divider-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+}
+
+.decorative-divider .divider-ornament {
+  font-size: 0.95rem;
+  color: var(--color-plum);
+}
+
+/* ---------- Specialist Hero Highlight ---------- */
+.hero-specialist-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(253, 248, 245, 0.95));
+  border: 1px solid var(--color-border-gold);
+  border-radius: 14px;
+  padding: 12px 16px;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-specialist-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(to bottom, var(--color-gold), var(--color-plum));
+}
+
+.specialist-badge {
+  display: inline-block;
+  background: var(--color-plum-soft);
+  color: var(--color-plum);
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  padding: 3px 12px;
+  border-radius: 20px;
+  margin-bottom: 5px;
+  border: 1px solid rgba(106, 34, 61, 0.15);
+}
+
+.specialist-statement {
+  font-family: var(--font-serif);
+  font-size: clamp(1.05rem, 2.8vw, 1.25rem);
+  font-weight: 700;
+  color: var(--color-plum-dark);
+  line-height: 1.35;
+}
+
+.specialist-desc {
+  font-size: 0.84rem;
+  color: var(--color-text-muted);
+  margin-top: 4px;
+}
+
+/* ---------- Services Grid ---------- */
+.services-section {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.section-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.section-label .tag {
+  color: var(--color-gold);
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.service-chip {
+  background: #FFFFFF;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 2px 5px rgba(106, 34, 61, 0.04);
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+
+.service-chip:active {
+  transform: scale(0.98);
+}
+
+.service-chip-icon {
+  width: 32px;
+  height: 32px;
+  background: var(--color-plum-soft);
+  color: var(--color-plum);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.service-chip-content {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.service-chip-title {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.service-chip-tag {
+  font-size: 0.68rem;
+  color: var(--color-gold);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+/* ---------- Business Information Card ---------- */
+.business-info-card {
+  background: #FFFFFF;
+  border: 1px solid var(--color-border-gold);
+  border-radius: 14px;
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: var(--shadow-sm);
+}
+
+.info-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.info-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: var(--color-gold-soft);
+  color: var(--color-plum);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.info-text-group {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
+}
+
+.info-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--color-text-light);
+  font-weight: 700;
+}
+
+.info-value {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+  line-height: 1.3;
+}
+
+.info-sub-value {
+  font-size: 0.76rem;
+  color: var(--color-text-muted);
+  margin-top: 1px;
+}
+
+.info-action-chip {
+  padding: 5px 12px;
+  background: var(--color-plum-soft);
+  color: var(--color-plum);
+  border: 1px solid rgba(106, 34, 61, 0.15);
+  border-radius: 6px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.15s ease;
+}
+
+.info-action-chip:active {
+  background: var(--color-plum);
+  color: #FFFFFF;
+}
+
+/* Multi-column contacts in info card */
+.contact-meta-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding-top: 8px;
+  border-top: 1px dashed rgba(106, 34, 61, 0.12);
+}
+
+/* ---------- Primary Contact Actions (Interactive Buttons) ---------- */
+.actions-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.actions-grid-2x2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.92rem;
+  letter-spacing: 0.04em;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.action-btn:active {
+  transform: scale(0.97);
+}
+
+/* Specific Button Styles */
+.btn-call {
+  background: linear-gradient(135deg, var(--color-plum), var(--color-plum-dark));
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.btn-whatsapp {
+  background: linear-gradient(135deg, #1fa855, #128C7E);
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.btn-directions {
+  background: #FFFFFF;
+  color: var(--color-plum-dark);
+  border: 1.5px solid var(--color-border-gold);
+}
+
+.btn-directions:active, .btn-directions:hover {
+  background: var(--color-gold-soft);
+  border-color: var(--color-gold);
+}
+
+.btn-instagram {
+  background: #FFFFFF;
+  color: var(--color-plum-dark);
+  border: 1.5px solid var(--color-border-gold);
+}
+
+.btn-instagram:active, .btn-instagram:hover {
+  background: #FDF4F6;
+  border-color: #E1306C;
+  color: #E1306C;
+}
+
+.btn-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Secondary Actions Bar (Save contact & Share) */
+.secondary-actions-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.btn-text-subtle {
+  background: transparent;
+  border: 1.5px dashed var(--color-border-gold);
+  color: var(--color-plum);
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-decoration: none;
+}
+
+.btn-text-subtle:active, .btn-text-subtle:hover {
+  background: #FFFFFF;
+  border-style: solid;
+  border-color: var(--color-gold);
+}
+
+/* ---------- Footer ---------- */
+.footer-section {
+  text-align: center;
+  font-size: 0.78rem;
+  color: var(--color-text-light);
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding-top: 6px;
+}
+
+.footer-copy {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.footer-copy strong {
+  color: var(--color-plum);
+  font-weight: 700;
+}
+
+.footer-owner {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  font-weight: 600;
+}
+
+/* ---------- Toast Notification ---------- */
+.toast-popup {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%) translateY(60px);
+  background: var(--color-plum-dark);
+  color: #FFFFFF;
+  padding: 10px 22px;
+  border-radius: 28px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid var(--color-gold);
+}
+
+.toast-popup.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+/* ==========================================================================
+   MOBILE LAYOUT (< 768px): Full-Width Single-Screen with Single Clean Scroll
+   ========================================================================== */
+@media (max-width: 767px) {
+  body {
+    padding: 0;
+  }
+
+  .screen-wrapper {
+    width: 100%;
+    min-height: 100dvh;
+    overflow: visible;
+  }
+
+  .card-container {
+    min-height: 100dvh;
+    padding: clamp(12px, 2vh, 18px) clamp(14px, 3.5vw, 20px);
+    gap: clamp(8px, 1.4vh, 14px);
+  }
+}
+
+/* ==========================================================================
+   DESKTOP LAYOUT (>= 768px): Luxury 2-Column Showcase (5-10% Compact Zoom)
+   ========================================================================== */
+@media (min-width: 768px) {
+  html {
+    font-size: 15.2px; /* ~8% compact zoom for a sleek desktop fit */
+  }
+
+  body {
+    background: linear-gradient(145deg, #F9F5F1 0%, #EDE4DE 100%);
+    padding: clamp(14px, 2.5vh, 26px) 16px;
+    align-items: center;
+  }
+
+  .screen-wrapper {
+    max-width: 830px; /* Reduced from 900px (~8% zoom out) */
+    height: auto;
+    min-height: auto;
+    border-radius: 22px;
+    background-color: var(--color-cream-bg);
+    border: 1.5px solid var(--color-border-gold);
+    box-shadow: 0 16px 45px rgba(106, 34, 61, 0.1), 0 2px 10px rgba(106, 34, 61, 0.04);
+    overflow: visible; /* NO INNER SCROLLBAR */
+  }
+
+  .card-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "header header"
+      "hero services"
+      "actions info"
+      "footer footer";
+    gap: 14px 20px;
+    padding: 24px 30px;
+  }
+
+  .header-section {
+    grid-area: header;
+    padding-bottom: 2px;
+  }
+
+  .hero-specialist-card {
+    grid-area: hero;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 14px 18px;
+  }
+
+  .services-section {
+    grid-area: services;
+    justify-content: center;
+  }
+
+  .actions-section {
+    grid-area: actions;
+    justify-content: center;
+  }
+
+  .business-info-card {
+    grid-area: info;
+    justify-content: center;
+    padding: 14px 18px;
+  }
+
+  .footer-section {
+    grid-area: footer;
+    padding-top: 8px;
+    border-top: 1px dashed rgba(106, 34, 61, 0.12);
+  }
+
+  .botanical-top-left {
+    width: 200px;
+    height: 200px;
+  }
+
+  .botanical-bottom-right {
+    width: 220px;
+    height: 220px;
+  }
+}
+
+/* Wide Desktop Screens (1200px+) */
+@media (min-width: 1200px) {
+  .screen-wrapper {
+    max-width: 880px; /* Scaled down from 950px (~8% zoom out) */
+  }
+
+  .card-container {
+    gap: 16px 24px;
+    padding: 28px 36px;
+  }
+}
+
+/* Netlify Badge Suppression Safeguard */
+#netlify-badge,
+.netlify-badge,
+[data-netlify-badge],
+a[href*="netlify.com"][class*="badge"],
+div[class*="netlify-badge"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
