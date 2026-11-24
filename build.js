@@ -14,6 +14,7 @@ const defaults = {
   PHONE_NUMBER: "+917379012111",
   DISPLAY_PHONE: "7379012111",
   WHATSAPP_NUMBER: "917379012111",
+  WHATSAPP_MESSAGE: "Hello! I would like to inquire about your services.",
   SHOP_ADDRESS: "SHOP NO. 35 AROHI PLAZA, PATRKAR PURAM, GOMTI NAGAR, LUCKNOW"
 };
 
@@ -24,6 +25,7 @@ const config = {
   PHONE_NUMBER: process.env.PHONE_NUMBER || defaults.PHONE_NUMBER,
   DISPLAY_PHONE: process.env.DISPLAY_PHONE || (process.env.PHONE_NUMBER ? process.env.PHONE_NUMBER.replace(/^\+91/, '').trim() : defaults.DISPLAY_PHONE),
   WHATSAPP_NUMBER: process.env.WHATSAPP_NUMBER ? process.env.WHATSAPP_NUMBER.replace(/\D/g, '') : defaults.WHATSAPP_NUMBER,
+  WHATSAPP_MESSAGE: process.env.WHATSAPP_MESSAGE || defaults.WHATSAPP_MESSAGE,
   SHOP_ADDRESS: process.env.SHOP_ADDRESS || defaults.SHOP_ADDRESS
 };
 

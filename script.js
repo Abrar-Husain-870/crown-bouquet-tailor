@@ -22,7 +22,7 @@ const shopDetails = {
     phone: "+917379012111",           // Used for tel: link (international format)
     displayPhone: "7379012111",        // Display format shown to customers
     whatsappNumber: "917379012111",    // Digits only with country code
-    whatsappMessage: "Hello Crown Bouquet Ladies Tailor, I would like to inquire about stitching & embroidery services.",
+    whatsappMessage: "Hello! I would like to inquire about your services.",
     instagramId: "tajquraishi5",
     instagramUrl: "https://www.instagram.com/tajquraishi5?lqvp=aG15cDF3enppdTM2",
 
@@ -126,6 +126,7 @@ function applyEnvOverrides(env) {
     if (env.PHONE_NUMBER && env.PHONE_NUMBER.trim()) shopDetails.phone = env.PHONE_NUMBER.trim();
     if (env.DISPLAY_PHONE && env.DISPLAY_PHONE.trim()) shopDetails.displayPhone = env.DISPLAY_PHONE.trim();
     if (env.WHATSAPP_NUMBER && env.WHATSAPP_NUMBER.trim()) shopDetails.whatsappNumber = env.WHATSAPP_NUMBER.trim().replace(/\D/g, '');
+    if (env.WHATSAPP_MESSAGE && env.WHATSAPP_MESSAGE.trim()) shopDetails.whatsappMessage = env.WHATSAPP_MESSAGE.trim();
     if (env.SHOP_ADDRESS && env.SHOP_ADDRESS.trim()) shopDetails.address = env.SHOP_ADDRESS.trim();
 }
 

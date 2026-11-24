@@ -68,6 +68,7 @@ You can configure and change your links anytime from the Netlify Dashboard (**Pr
 | `PHONE_NUMBER` | Contact phone with country code | `+917379012111` |
 | `DISPLAY_PHONE` | Formatted phone number | `7379012111` |
 | `WHATSAPP_NUMBER` | WhatsApp digits only | `917379012111` |
+| `WHATSAPP_MESSAGE` | Pre-filled greeting message | `Hello! I would like to inquire about your services.` |
 | `SHOP_ADDRESS` | Shop address text | `SHOP NO. 35 AROHI PLAZA, PATRKAR PURAM, GOMTI NAGAR, LUCKNOW` |
 
 If any variable is omitted or left blank, the website automatically falls back to its current default value.

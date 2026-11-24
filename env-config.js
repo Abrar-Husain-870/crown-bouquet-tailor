@@ -9,5 +9,6 @@ window.__ENV__ = {
   "PHONE_NUMBER": "+917379012111",
   "DISPLAY_PHONE": "7379012111",
   "WHATSAPP_NUMBER": "917379012111",
+  "WHATSAPP_MESSAGE": "Hello! I would like to inquire about your services.",
   "SHOP_ADDRESS": "SHOP NO. 35 AROHI PLAZA, PATRKAR PURAM, GOMTI NAGAR, LUCKNOW"
 };

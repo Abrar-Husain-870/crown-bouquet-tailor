@@ -10,6 +10,7 @@ exports.handler = async () => {
     PHONE_NUMBER: process.env.PHONE_NUMBER || "",
     DISPLAY_PHONE: process.env.DISPLAY_PHONE || "",
     WHATSAPP_NUMBER: process.env.WHATSAPP_NUMBER || "",
+    WHATSAPP_MESSAGE: process.env.WHATSAPP_MESSAGE || "",
     SHOP_ADDRESS: process.env.SHOP_ADDRESS || ""
   };
 
